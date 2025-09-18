@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧬 Market DNA Spiral</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Background overlay -->
+  <div class="grid-overlay"></div>
+  
+  <!-- Main title -->
+  <header class="title">
+    <span class="glowing">🧬 MARKET GENOME ANALYSIS</span>
+  </header>
+  
+  <!-- File input section -->
+  <section id="fileInputContainer">
+    <label for="fileInput">IMPORT SEQUENCE</label>
+    <input type="file" id="fileInput" accept=".json">
+  </section>
+  
+  <!-- Sequence statistics panel -->
+  <aside class="sequence-stats" id="sequenceStats">
+    <div class="panel-header">
+      <div class="panel-title">GENOME METRICS</div>
+    </div>
+    <div class="stats-content">
+      <div class="stat-row">
+        <span class="stat-label">SEGMENTS:</span>
+        <span class="stat-value" id="totalSegments">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">OPTIMAL:</span>
+        <span class="stat-value" id="optimalCount">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">NEGATIVE:</span>
+        <span class="stat-value" id="negativeCount">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">VOLATILITY:</span>
+        <span class="stat-value" id="volatility">--</span>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Info panel -->
+  <aside id="infoBox">
+    <div class="panel-header">
+      <div class="panel-title">SEQUENCE INFO</div>
+      <div class="panel-controls">
+        <button class="panel-btn" title="Refresh">⟳</button>
+        <button class="panel-btn" title="Close">⨯</button>
+      </div>
+    </div>
+    <div class="panel-content">
+      Upload a genomic sequence file to analyze market DNA structure.
+    </div>
+  </aside>
+  
+  <!-- Data indicator -->
+  <div class="data-indicator">AWAITING GENOME SEQUENCE INPUT...</div>
+  
+  <!-- Control panel -->
+  <aside id="controlPanel">
+    <div class="panel-header">
+      <div class="panel-title">SYSTEM CONTROLS</div>
+      <div class="panel-controls">
+        <button class="panel-btn" title="Settings">⚙</button>
+        <button class="panel-btn" title="Close">⨯</button>
+      </div>
+    </div>
+    
+    <!-- Main controls -->
+    <div class="control-group">
+      <button id="rotateBtn" class="control-btn active">ORBIT</button>
+      <button id="selfRotateBtn" class="control-btn active">ROTATION</button>
+      <button id="resetBtn" class="control-btn">RESET</button>
+    </div>
+    
+    <!-- Segment type selector -->
+    <section id="typeSelector">
+      <h3>Genomic Segments:</h3>
+      <div class="type-buttons">
+        <button class="type-btn active" data-type="optimal">OPTIMAL</button>
+        <button class="type-btn" data-type="negative">NEGATIVE</button>
+        <button class="type-btn" data-type="all">ALL</button>
+      </div>
+    </section>
+    
+    <!-- Sliders for various controls -->
+    <div class="controls-section">
+      <div class="slider-container">
+        <label for="rotationSpeed">CAMERA VELOCITY</label>
+        <input type="range" id="rotationSpeed" min="0" max="5" step="0.1" value="0.7">
+      </div>
+      <div class="slider-container">
+        <label for="dnaRotationSpeed">GENOME ROTATION</label>
+        <input type="range" id="dnaRotationSpeed" min="0" max="5" step="0.1" value="1.0">
+      </div>
+      <div class="slider-container">
+        <label for="dnaScale">ZOOM FACTOR</label>
+        <input type="range" id="dnaScale" min="0.5" max="2" step="0.1" value="1">
+      </div>
+      <div class="slider-container">
+        <label for="helixTurns">HELIX DENSITY</label>
+        <input type="range" id="helixTurns" min="5" max="30" step="1" value="15">
+      </div>
+      <div class="slider-container">
+        <label for="helixRadius">DIAMETER</label>
+        <input type="range" id="helixRadius" min="5" max="30" step="1" value="10">
+      </div>
+      <div class="slider-container">
+        <label for="backboneThickness">BACKBONE</label>
+        <input type="range" id="backboneThickness" min="0.5" max="3" step="0.1" value="1.2">
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Debug console -->
+  <footer id="debugBox"></footer>
+  
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/orbit-controls.js"></script>
+  <script src="js/dna-visualizer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

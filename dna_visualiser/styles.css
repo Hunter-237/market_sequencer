@@ -1,0 +1,534 @@
+/* ==========================================================================
+   Market DNA Spiral - Main Styles
+   ========================================================================== */
+
+/* Base Styles
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at center, #0a0e21 0%, #050510 100%);
+  overflow: hidden;
+  color: #e0e7ff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  letter-spacing: 0.02em;
+  height: 100vh;
+}
+
+canvas {
+  display: block;
+}
+
+/* Layout Components
+   ========================================================================== */
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(66, 134, 244, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66, 134, 244, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Header and Title
+   ========================================================================== */
+
+.title {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 300;
+  color: #e0e7ff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(66, 134, 244, 0.5);
+  pointer-events: none;
+  font-family: 'Roboto Mono', monospace;
+  z-index: 10;
+}
+
+.glowing {
+  animation: glow 4s infinite alternate;
+}
+
+@keyframes glow {
+  from { 
+    text-shadow: 0 0 10px rgba(66, 134, 244, 0.5); 
+  }
+  to { 
+    text-shadow: 0 0 25px rgba(66, 134, 244, 0.9), 0 0 40px rgba(110, 72, 246, 0.4); 
+  }
+}
+
+/* File Input Section
+   ========================================================================== */
+
+#fileInputContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#fileInput {
+  display: none;
+}
+
+label[for="fileInput"] {
+  color: #e0e7ff;
+  background: linear-gradient(135deg, rgba(55, 90, 150, 0.7), rgba(82, 58, 180, 0.7));
+  padding: 10px 16px;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(66, 134, 244, 0.2), inset 0 0 3px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  border: 1px solid rgba(66, 134, 244, 0.2);
+}
+
+label[for="fileInput"]:hover {
+  background: linear-gradient(135deg, rgba(66, 134, 244, 0.8), rgba(82, 58, 180, 0.8));
+  box-shadow: 0 0 20px rgba(66, 134, 244, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+label[for="fileInput"]::before {
+  content: "⇪";
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+/* Data Indicator
+   ========================================================================== */
+
+.data-indicator {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  color: #78a9ff;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+/* Panel Base Styles
+   ========================================================================== */
+
+.panel-base {
+  background: rgba(10, 14, 33, 0.7);
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(66, 134, 244, 0.15);
+  border: 1px solid rgba(66, 134, 244, 0.2);
+  backdrop-filter: blur(12px);
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(66, 134, 244, 0.15);
+  padding-bottom: 10px;
+}
+
+.panel-title {
+  color: #78a9ff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.panel-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.panel-btn {
+  background: rgba(30, 40, 80, 0.6);
+  border: none;
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #78a9ff;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.panel-btn:hover {
+  background: rgba(66, 134, 244, 0.4);
+}
+
+/* Info Box
+   ========================================================================== */
+
+#infoBox {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 18px;
+  font-size: 14px;
+  max-width: 350px;
+  line-height: 1.5;
+  font-weight: 300;
+  z-index: 10;
+}
+
+#infoBox .panel-content {
+  margin-top: 10px;
+  padding: 8px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b8c5e0;
+}
+
+#infoBox,
+.sequence-stats,
+#controlPanel {
+  background: rgba(10, 14, 33, 0.7);
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(66, 134, 244, 0.15);
+  border: 1px solid rgba(66, 134, 244, 0.2);
+  backdrop-filter: blur(12px);
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Sequence Statistics
+   ========================================================================== */
+
+.sequence-stats {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  padding: 15px;
+  font-size: 11px;
+  color: #a0b4e0;
+  max-width: 200px;
+  display: none;
+  z-index: 10;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted rgba(66, 134, 244, 0.15);
+  padding-bottom: 5px;
+}
+
+.stat-label {
+  color: #78a9ff;
+}
+
+.stat-value {
+  color: #e0e7ff;
+}
+
+/* Control Panel
+   ========================================================================== */
+
+#controlPanel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 10;
+  max-width: 300px;
+  font-size: 13px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Buttons
+   ========================================================================== */
+
+.control-btn,
+.type-btn {
+  background: linear-gradient(135deg, rgba(55, 90, 150, 0.7), rgba(82, 58, 180, 0.7));
+  border: 1px solid rgba(66, 134, 244, 0.2);
+  border-radius: 3px;
+  color: #e0e7ff;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.control-btn::after,
+.type-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+}
+
+.control-btn:hover,
+.type-btn:hover {
+  background: linear-gradient(135deg, rgba(66, 134, 244, 0.8), rgba(82, 58, 180, 0.8));
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(66, 134, 244, 0.3);
+}
+
+.control-btn:hover::after,
+.type-btn:hover::after {
+  left: 100%;
+}
+
+.control-btn.active,
+.type-btn.active {
+  background: linear-gradient(135deg, rgba(0, 180, 150, 0.7), rgba(0, 140, 180, 0.7));
+  box-shadow: 0 0 15px rgba(0, 180, 150, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Type Selector
+   ========================================================================== */
+
+#typeSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(66, 134, 244, 0.15);
+  border-bottom: 1px solid rgba(66, 134, 244, 0.15);
+  padding: 12px 0;
+  margin-top: 5px;
+}
+
+#typeSelector h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #78a9ff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.type-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.type-btn {
+  background: rgba(55, 90, 150, 0.4);
+  flex-grow: 1;
+  min-width: 60px;
+  text-align: center;
+  font-size: 11px;
+  padding: 6px 10px;
+}
+
+.type-btn:hover {
+  background: rgba(66, 134, 244, 0.5);
+  border-color: rgba(66, 134, 244, 0.4);
+}
+
+.type-btn.active {
+  background: linear-gradient(135deg, rgba(0, 180, 150, 0.7), rgba(0, 140, 180, 0.7));
+  box-shadow: 0 0 10px rgba(0, 180, 150, 0.3);
+  border-color: rgba(0, 180, 150, 0.4);
+}
+
+/* Sliders
+   ========================================================================== */
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slider-container label {
+  font-size: 11px;
+  color: #a0b4e0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(90deg, rgba(30, 40, 80, 1), rgba(66, 134, 244, 0.7));
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(66, 134, 244, 0.7);
+  border: 1px solid rgba(66, 134, 244, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(66, 134, 244, 0.7);
+  border: 1px solid rgba(66, 134, 244, 0.5);
+}
+
+/* Debug Box
+   ========================================================================== */
+
+#debugBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  background: rgba(10, 14, 33, 0.8);
+  color: #50E3C2;
+  font-size: 11px;
+  overflow-y: auto;
+  padding: 12px;
+  font-family: 'Roboto Mono', monospace;
+  border-top: 1px solid rgba(66, 134, 244, 0.15);
+  backdrop-filter: blur(12px);
+  letter-spacing: 0.03em;
+  z-index: 5;
+}
+
+/* Animation Effects
+   ========================================================================== */
+
+@keyframes pulseHighlight {
+  0% { 
+    box-shadow: 0 0 5px rgba(80, 227, 194, 0.5); 
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(80, 227, 194, 0.8); 
+  }
+  100% { 
+    box-shadow: 0 0 5px rgba(80, 227, 194, 0.5); 
+  }
+}
+
+/* Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 18px;
+    top: 15px;
+  }
+  
+  #infoBox {
+    max-width: 280px;
+    font-size: 12px;
+  }
+  
+  #controlPanel {
+    max-width: 250px;
+    padding: 15px;
+  }
+  
+  .type-buttons {
+    flex-direction: column;
+  }
+  
+  .type-btn {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #fileInputContainer {
+    top: 60px;
+    right: 15px;
+  }
+  
+  label[for="fileInput"] {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  #infoBox,
+  #controlPanel {
+    position: relative;
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+  
+  #controlPanel {
+    bottom: auto;
+    right: auto;
+  }
+}
+
+/* Utility Classes
+   ========================================================================== */
+
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
